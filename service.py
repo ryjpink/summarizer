@@ -32,7 +32,8 @@ def summarize_text():
         return Response(
             "Bad request: Required parameter string_to_cut missing",
             status=400)
-    return_string = cut_string(string_to_cut)
+    skipLength = request.args.get('skipLength', default=3, type=int)
+    return_string = cut_string(string_to_cut, skipLength)
     return jsonify({'return_string': return_string})
 
 if __name__ == '__main__':
